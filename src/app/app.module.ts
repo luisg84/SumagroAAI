@@ -14,11 +14,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
-
-
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
+import {  
+  FileTransfer  
+} from '@ionic-native/file-transfer/ngx';  
+import {  
+  File  
+} from '@ionic-native/file/ngx';
 import { FormsModule } from '@angular/forms';
 
-
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 
 
@@ -43,7 +48,7 @@ import { FormsModule } from '@angular/forms';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {provide: FirestoreSettingsToken, useValue: {}},
+    {provide: FirestoreSettingsToken, useValue: {}},DocumentViewer,FileTransfer,File,FileOpener
   ],
   bootstrap: [AppComponent],
 
