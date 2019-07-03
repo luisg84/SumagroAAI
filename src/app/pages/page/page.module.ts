@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PagePage } from './page.page';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    FCM ,
     RouterModule.forChild(routes)
   ],
   declarations: [PagePage]

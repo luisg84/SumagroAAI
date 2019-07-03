@@ -7,6 +7,9 @@ const routes: Routes = [
   { path: 'page', loadChildren: './pages/page/page.module#PagePageModule' },
   { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' },
   { path: 'pedido', loadChildren: './pages/pedido/pedido.module#PedidoPageModule' },
+  { path: 'gen-pdf', loadChildren: './pages/gen-pdf/gen-pdf.module#GenPdfPageModule' },
+  { path: 'estatus/:id', loadChildren: './pages/estatus/estatus.module#EstatusPageModule' },
+  { path: 'estatus-list', loadChildren: './pages/estatus-list/estatus-list.module#EstatusListPageModule' },
 ];
 
 @NgModule({

@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar color='success'>
+        <ion-title>Estatus</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [ngSwitch]="status">
+
+    <h1>Estatus de la Orden</h1>
+
+    <img *ngSwitchCase="" src="../../../assets/img/E00.png" alt="" class="imgstatus">
+
+    <img *ngSwitchCase="'PENDING'" src="../../../assets/img/E01.png" alt="" class="imgstatus">
+
+    <img *ngSwitchCase="'TRANSIT'" src="../../../assets/img/E02.png" alt="" class="imgstatus">
+    <img *ngSwitchCase="'DELIVERED'" src="../../../assets/img/E03.png" alt="" class="imgstatus">
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" color='success'>
+        <ion-fab-button (click)='back()'>
+            <ion-icon name="arrow-round-back"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

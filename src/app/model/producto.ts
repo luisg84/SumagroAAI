@@ -1,14 +1,13 @@
 // import { totalmem } from 'os';
 
-export class Producto {
-    public cantidad: number;
-    public unidad: number;
-    public descForm: string;
-    public precioUnitario: number;
-    //public TotUnit: number;
+export interface Producto {
 
 
-
+        quantity: number;
+        unit: string ;
+        description: string ;
+        unitPrice: number;
+        total: number;
 
 }
 

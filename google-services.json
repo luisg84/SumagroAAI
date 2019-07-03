@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1016153454511",
+    "firebase_url": "https://sumagro-backend.firebaseio.com",
+    "project_id": "sumagro-backend",
+    "storage_bucket": "sumagro-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016153454511:android:cd405c096f8baa04",
+        "android_client_info": {
+          "package_name": "shs.sumagro.UAA"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1016153454511-cs83qf2k1ee7g4fj8dgmegd90b8uopu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZUcPmkr3NRZ4kNkV5P_VYKTFNvi3sLgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1016153454511-cs83qf2k1ee7g4fj8dgmegd90b8uopu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

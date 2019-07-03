@@ -1,0 +1,146 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Producto } from '../model/producto';
+import { Pedido } from '../interfaces/pedido';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SumagroAppService {
+  endPoint = 'https://us-central1-sumagro-backend.cloudfunctions.net/app';
+ public  options = {
+    headers: {}
+  };
+  // https://us-central1-sumagro-backend.cloudfunctions.net/app
+
+  // http://192.168.0.9:5001/sumagro-backend/us-central1/app
+  constructor(private httpClient: HttpClient) { }
+  private extractData(res: Response) {
+    const body = res;
+    console.log(body);
+    return body || { };
+  }
+
+  userUpdate(token, userUpdate): Observable<any> {
+    this.options.headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      // tslint:disable-next-line:object-literal-shorthand
+      // tslint:disable-next-line:object-literal-key-quotes
+      'Authorization': token
+    });
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.post(`${this.endPoint}/sumagro-app/register`, JSON.stringify(userUpdate), this.options).pipe(map(this.extractData));
+  }
+
+  agregarOrden(token, objetoGeneral: Pedido ): Observable<any> {
+    this.options.headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      // tslint:disable-next-line:object-literal-shorthand
+      // tslint:disable-next-line:object-literal-key-quotes
+      'Authorization': token
+    });
+    console.log(this.options.headers);
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.post(`${this.endPoint}/sumagro-app/order`, JSON.stringify(objetoGeneral), this.options).pipe(map(this.extractData));
+  }
+
+
+  obtenerOrdenes(token): Observable<any> {
+    this.options.headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      // tslint:disable-next-line:object-literal-shorthand
+      // tslint:disable-next-line:object-literal-key-quotes
+      'Authorization': token
+
+    });
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.get(`${this.endPoint}/sumagro-app/order?status=PENDING`, this.options);
+
+  }
+
+  obtenerPDF(token, id: string ): Observable<any> {
+    // tslint:disable-next-line:prefer-const
+    let tempHeaders: any = {
+      headers : new HttpHeaders({
+        'Content-Type':  'application/json',
+        // tslint:disable-next-line:object-literal-shorthand
+        // tslint:disable-next-line:object-literal-key-quotes
+        'Authorization': token
+      }),
+      responseType: 'blob',
+    };
+   // console.log(this.options.headers);
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.get(`${this.endPoint}/sumagro-app/generate-pdf/${id}`, tempHeaders);
+  }
+
+  deleteOrder(token, id: string): Observable<any> {
+    this.options.headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      // tslint:disable-next-line:object-literal-shorthand
+      // tslint:disable-next-line:object-literal-key-quotes
+      'Authorization': token
+
+    });
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.delete(`${this.endPoint}/sumagro-app/order/${id}`, this.options);
+
+  }
+
+  obtenerInegenios(token): Observable<any> {
+    this.options.headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      // tslint:disable-next-line:object-literal-shorthand
+      // tslint:disable-next-line:object-literal-key-quotes
+      'Authorization': token
+
+    });
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.get(`${this.endPoint}/sumagro-app/ingenios`, this.options);
+
+  }
+
+  obtenerOrdenesStatus(token): Observable<any> {
+    this.options.headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      // tslint:disable-next-line:object-literal-shorthand
+      // tslint:disable-next-line:object-literal-key-quotes
+      'Authorization': token
+
+    });
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.get(`${this.endPoint}/sumagro-app/order`, this.options);
+
+  }
+
+  statusOrder(token, id: string): Observable<any> {
+    this.options.headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      // tslint:disable-next-line:object-literal-shorthand
+      // tslint:disable-next-line:object-literal-key-quotes
+      'Authorization': token
+
+    });
+    console.log('id enviado', id);
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.get(`${this.endPoint}/sumagro-app/order/status/${id}`, this.options);
+
+  }
+
+  mandarToken(token, token2 ): Observable<any> {
+    this.options.headers = new HttpHeaders({
+      'Content-Type': 'application/json', 
+      // tslint:disable-next-line:object-literal-shorthand
+      // tslint:disable-next-line:object-literal-key-quotes
+      'Authorization': token
+    });
+
+    return this.httpClient.post(`${this.endPoint}/sumagro-app/token`, JSON.stringify({token: token2}), this.options);
+  }
+
+
+}
+

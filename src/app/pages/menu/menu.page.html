@@ -1,17 +1,40 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>menu</ion-title>
+<ion-header class="head">
+    <ion-toolbar color='success'>
+        <ion-title>Administrador Almacen</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div class='opciones'>
-        <ion-button color="primary" expand="block" (click)='irPedido()'>Generar Pedido</ion-button>
-        <div class='Botones'>
-            <ion-button expand="block" color="secondary">Crear Reporte</ion-button>
-            <ion-button expand="block" color="tertiary">Monitorear Carga</ion-button>
-        </div>
 
+    <div class="logo">
+        <img src="../../../assets/img/Logosmg.png" alt="" class='imgLogo'>
     </div>
+    <div class="Botones">
+        <div class='opciones'>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-button expand="block" (click)='irPedido()' class="green buttonRectangle">
+                            <img src="../../../assets/icon/btnGenerar.png" alt="" class='iconsizeBtn'>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+
+                    <ion-col size="6">
+                        <ion-button expand="block" class="blue buttonSquare "><img src="../../../assets/icon/btnReporte.png" alt="" class='iconsizeBtn' (click)='irGenPdf()'></ion-button>
+                    </ion-col>
+                    <ion-col size="6">
+                        <ion-button expand="block" class="buttonSquare orange"><img src="../../../assets/icon/btnMonitor.png" alt="" class='iconsizeBtn' (click)='irStatus()'></ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </div>
+    </div>
+
+
+
+
 
 </ion-content>

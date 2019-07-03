@@ -6,22 +6,38 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from 'angularfire2';
 import {  } from '@angular/fire/';
 import { reject } from 'q';
+import * as firebase from 'firebase/app';
+import { FirebaseService } from '../servicios/firebase.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
-  constructor(private AFauth: AngularFireAuth) { }
-
-   login(email: string, password: string) {
-     // tslint:disable-next-line:no-shadowed-variable
-     return new Promise((resolve, reject ) => {
-      this.AFauth.auth.signInWithEmailAndPassword(email, password).then(res => {resolve(res);
-      }).catch(err => reject('Error: ' + err));
-     });
- 
+  constructor(private firebaseService: FirebaseService, public afAuth: AngularFireAuth) {
   }
 
+  doLogin(value) {
+    // tslint:disable-next-line:no-shadowed-variable
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+      .then(
+        res => resolve(res),
+        err => reject(err));
+    });
+   }
 
+   getToken() {
+    // tslint:disable-next-line:no-shadowed-variable
+    return new Promise<any>((resolve, reject) => {
+      // tslint:disable-next-line:only-arrow-functions
+      firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+        console.log('idToken: ', idToken);
+        resolve(idToken);
+      // tslint:disable-next-line:only-arrow-functions
+      }).catch(function(err) {
+
+        console.log('error:', err);
+        reject(err);
+      });
+    });
+   }
 }

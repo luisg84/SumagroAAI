@@ -1,6 +1,60 @@
-.Botones {
-    display: flex;
-    justify-content: center;
-}
-
-.opciones {}
+    .Botones {
+        display: flex;
+        justify-content: center;
+        margin-right: 1em;
+    }
+    
+    // .opciones {
+    //     position: absolute;
+    //     bottom: 30px;
+    // }
+    .green {
+        --background: #24D59D;
+    }
+    
+    .Red {
+        --background: #A30B38;
+    }
+    
+    .orange {
+        --background: #DB645C;
+    }
+    
+    .blue {
+        --background: #0B80A3;
+    }
+    
+    .buttonSquare {
+        width: 100%;
+        height: 10em;
+        --border-radius: 15px;
+        margin-top: 0;
+    }
+    
+    .buttonRectangle {
+        width: 100%;
+        height: 8em;
+        margin: none;
+        margin-bottom: 0%;
+    }
+    
+    .iconsizeBtn {
+        width: 8em;
+    }
+    
+    .logo {
+        display: flex;
+        justify-content: center;
+        margin-top: 8em;
+        margin-bottom: 2em;
+        // border-style: solid;
+    }
+    
+    .imgLogo {
+        width: 18em;
+        height: 6em;
+    }
+    
+    .head {
+        background-color: #24D59D;
+    }
