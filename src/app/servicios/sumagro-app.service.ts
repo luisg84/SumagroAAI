@@ -165,7 +165,7 @@ export class SumagroAppService {
   
       });
       // tslint:disable-next-line:max-line-length
-      return this.httpClient.get(`${this.endPoint}/sumagro-app/user/${userId}`, this.options).subscribe(data => resolve(data));
+       this.httpClient.get(`${this.endPoint}/sumagro-app/user/${userId}`, this.options).subscribe(data => resolve(data));
     })
   }
 

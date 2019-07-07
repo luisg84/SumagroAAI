@@ -16,6 +16,40 @@
 
     <img *ngSwitchCase="'TRANSIT'" src="../../../assets/img/E02.png" alt="" class="imgstatus">
     <img *ngSwitchCase="'DELIVERED'" src="../../../assets/img/E03.png" alt="" class="imgstatus">
+    <ion-grid class="cabecera" *ngIf="bandera">
+        <ion-row>
+            <ion-col size="12">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="12">
+                            <div class="titulo">
+                                Detalle de la Orden
+                            </div>
+                        </ion-col>
+
+                        <ion-col size="12" *ngIf="bandera">
+                            <p class="tlt center">{{Objorden.client}}</p>
+                        </ion-col>
+
+                        <ion-col size="6" align-self-start *ngIf="bandera">
+                            <p class="tlt">Fecha: {{Objorden.shippingDate}}</p>
+                        </ion-col>
+                        <ion-col size="6" *ngIf="bandera">
+                            <p class="tlt">Total general: ${{Objorden.totalGeneral}}.00</p>
+                        </ion-col>
+                        <ion-col size="6" align-self-start *ngIf="bandera">
+                            <p class="tlt"># Remisión: {{Objorden.remissionNumber}}</p>
+                        </ion-col>
+                        <ion-col size="6" *ngIf="bandera">
+                            <p class="tlt">Anticipo: ${{Objorden.advance}}.00</p>
+                        </ion-col>
+
+
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" color='success'>
         <ion-fab-button (click)='back()'>

@@ -13,7 +13,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
   providers: [AuthService, AngularFireAuth, SumagroAppService, FCM]
 })
 export class HomePage {
-
+   
   email: string;
   password: string;
 
@@ -74,7 +74,7 @@ export class HomePage {
       let token = await this.authService.getToken();
       let userData:any = await this.sumagroAppService.getInfo(token,response['user']['uid']);
       console.log(userData)
-      if(userData.rol=="WAREHOUSE"){
+      if(userData.rol=="INGENIO_ADMIN"){
       this.obtenerTokenFCM();
 
       this.router.navigate(['/menu']);
