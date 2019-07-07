@@ -3,7 +3,7 @@ import { AuthService } from '../servicios/auth.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {  SumagroAppService } from '../servicios/sumagro-app.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import { FCM } from '@ionic-native/fcm/ngx';
 
 @Component({
@@ -16,10 +16,11 @@ export class HomePage {
 
   email: string;
   password: string;
-  alertController: any;
 
   // tslint:disable-next-line:max-line-length
-  constructor(public loadingController: LoadingController, private authService: AuthService, public router: Router, public sumagroAppService: SumagroAppService, public fcm: FCM) { }
+  constructor(public alertController: AlertController,public loadingController: LoadingController, private authService: AuthService, public router: Router, public sumagroAppService: SumagroAppService, public fcm: FCM) { 
+    
+  }
 
   obtenerTokenFCM() {
     this.fcm.getToken().then(
@@ -70,10 +71,24 @@ export class HomePage {
     let response = '';
     try {
       response = await this.authService.doLogin({email: this.email, password: this.password});
+      let token = await this.authService.getToken();
+      let userData:any = await this.sumagroAppService.getInfo(token,response['user']['uid']);
+      console.log(userData)
+      if(userData.rol=="WAREHOUSE"){
       this.obtenerTokenFCM();
 
       this.router.navigate(['/menu']);
-
+      }else{
+        
+          const alert = await this.alertController.create({
+            header: 'Alert',
+            subHeader: "Acceso denegado",
+            message: "El usuario no tiene permisos para usar esta app.",
+            buttons: ['OK']
+          });
+      
+          await alert.present();
+      }
 
     } catch (err) {
       console.log(err);
