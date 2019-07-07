@@ -34,11 +34,19 @@
 
                                 <ion-col size="3">
                                     <div class=genPDF>
-                                        <ion-button expand="block" (click)='generPDF(ordenes.id)' class="orange buttonSquare">
+                                        <!-- <ion-button expand="block" (click)='generPDF(ordenes.id)' class="orange buttonSquare">
                                             <img src="../../../assets/icon/pdfIcon.png" alt="" class='iconsize'>
-                                        </ion-button>
-                                        <ion-button expand="block" (click)='deleteOrder(index,ordenes.id)' class="blueCalenda buttonSquare">
+                                        </ion-button> -->
+                                        <ion-button expand="block" (click)='deleteOrder(index,ordenes.id)' class="orange  buttonSquare">
                                             <img src="../../../assets/icon/trashIcon.png" alt="" class='iconsize'>
+                                        </ion-button>
+                                        <!-- <ion-button expand="block" (click)='mandarEmail(ordenes.ingenioId ,ordenes.id)' class="black buttonSquare">
+                                            <img src="../../../assets/icon/sendIcon.png" alt="" class='iconsize'>
+                                        </ion-button> -->
+
+                                        <ion-button expand="block" (click)="detalles(ordenes.id)" class="grenHig buttonSquare">
+                                            <!-- <img src="../../../assets/icon/sendIcon.png" alt="" class='iconsize'> -->
+                                            <h3 class="tlt">Detalles</h3>
                                         </ion-button>
                                     </div>
 
@@ -50,6 +58,8 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+
+
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" color='success'>
         <ion-fab-button (click)='cancel()'>

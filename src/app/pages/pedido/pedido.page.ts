@@ -94,11 +94,11 @@ export class PedidoPage implements OnInit {
     //       console.log('Loading Dismissed!');
     //     });
     // this.descprod.push(prodcutoSolicitado);
-    // this.Cantidad = 0;
-    // this.Unidad = ' ';
-    // this.DescFormula = ' ';
-    // this.PreUnitario = 0;
-    // this.TotInd = 0;
+    this.Cantidad = 0;
+    this.Unidad = ' ';
+    this.DescFormula = ' ';
+    this.PreUnitario = 0;
+    this.TotInd = 0;
     this.descprod.push(prodcutoSolicitado);
     console.log(this.Cantidad);
   }

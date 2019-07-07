@@ -6,6 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { Orden } from 'src/app/interfaces/reporte';
 import { Router } from '@angular/router';
 import { DocumentViewer,DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import {  
   FileTransfer 
 } from '@ionic-native/file-transfer/ngx';  
@@ -18,19 +19,21 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
   selector: 'app-gen-pdf',
   templateUrl: './gen-pdf.page.html',
   styleUrls: ['./gen-pdf.page.scss'],
-  providers: [AuthService, AngularFireAuth, SumagroAppService]
+  providers: [AuthService, AngularFireAuth, SumagroAppService, AndroidPermissions]
 })
 export class GenPdfPage implements OnInit {
   orden: Orden[];
+ 
 
 
 private fileTransfer: any;
   // tslint:disable-next-line:max-line-length
   constructor(private sumagroAppService: SumagroAppService, public authService: AuthService, public alertController: AlertController, public router: Router,
-    public fileOpener: FileOpener,private transfer: FileTransfer, private file: File) { }
+    public fileOpener: FileOpener,private transfer: FileTransfer, private file: File, private androidPermissions: AndroidPermissions) { }
 
   async ngOnInit() {
    this.solicitar();
+   this.permisos();
   }
 
   async presentAlert(texto) {
@@ -92,5 +95,30 @@ async deleteOrder(index, id) {
 });
 
 }
+
+permisos(){
+  this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
+    result => console.log('Has permission?',result.hasPermission),
+    err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
+  );
+  
+  this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+};
+
+async mandarEmail(ingenioID,orderId) {
+  // tslint:disable-next-line:prefer-const
+  let token = await this.authService.getToken();
+  this.sumagroAppService.mandarEmail(token, ingenioID,orderId).subscribe( resp=> {
+    //this.presentAlert(resp);
+    console.log(resp);
+    //this.orden = resp;
+   // console.log(`ordenes`, resp[2].enterpriseName);
+  });
+  }
+
+  detalles(idor: string, idin: string) {
+    // this.router.navigate(['/detalles-orden/' + idor +'/' + idin]);
+    this.router.navigate(['/detalles-orden/' + idor ]);
+  }
 
 }

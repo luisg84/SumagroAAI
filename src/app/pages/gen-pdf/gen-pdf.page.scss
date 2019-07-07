@@ -1,6 +1,6 @@
 .grenHig {
     color: #ffdc44;
-    font-size: 20px;
+    //font-size: 20px;
 }
 
 .blueCalendar {
@@ -18,8 +18,18 @@
     --background: #DB645C;
 }
 
+.black {
+    --background: #222222;
+}
+
 .genPDF {}
 
 .iconsize {
     width: 1.5em
+}
+
+.tlt {
+    color: azure;
+    font-size: 8px;
+    font-weight: bold;
 }

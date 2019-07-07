@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^7.2.2",
     "@angular/platform-browser-dynamic": "^7.2.2",
     "@angular/router": "^7.2.2",
+    "@ionic-native/android-permissions": "^5.9.0",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/document-viewer": "^5.9.0",
     "@ionic-native/fcm": "^5.8.0",
@@ -33,6 +34,7 @@
     "angularfire2": "^5.2.1",
     "cordova-android": "7.1.4",
     "cordova-common": "^3.2.0",
+    "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-document-viewer": "0.9.11",
     "cordova-plugin-fcm-with-dependecy-updated": "2.4.0",
@@ -95,7 +97,8 @@
       "cordova-plugin-fcm-with-dependecy-updated": {},
       "cordova-plugin-file-opener2": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      }
+      },
+      "cordova-plugin-android-permissions": {}
     },
     "platforms": [
       "android"

@@ -10,6 +10,8 @@ const routes: Routes = [
   { path: 'gen-pdf', loadChildren: './pages/gen-pdf/gen-pdf.module#GenPdfPageModule' },
   { path: 'estatus/:id', loadChildren: './pages/estatus/estatus.module#EstatusPageModule' },
   { path: 'estatus-list', loadChildren: './pages/estatus-list/estatus-list.module#EstatusListPageModule' },
+  // { path: 'detalles-orden/:idor/:idin', loadChildren: './pages/detalles-orden/detalles-orden.module#DetallesOrdenPageModule' },
+  { path: 'detalles-orden/:idor', loadChildren: './pages/detalles-orden/detalles-orden.module#DetallesOrdenPageModule' }
 ];
 
 @NgModule({

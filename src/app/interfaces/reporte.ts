@@ -4,19 +4,20 @@ export interface Orden {
   clientAddress: string;
   remissionNumber: number;
   shippingDate: string;
-  subObders: SubObder[];
+  subOrders: subOrders[];
   totalGeneral: number;
   ingenioId: string;
   advance: number;
   status: string;
 }
 
-export interface SubObder {
+export interface subOrders {
   description: string;
   quantity: number;
   total: number;
   unit: string;
   unitPrice: number;
+  status: boolean;
 }
 
 export interface Ingenio {
