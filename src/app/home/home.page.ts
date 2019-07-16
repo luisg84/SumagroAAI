@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {  SumagroAppService } from '../servicios/sumagro-app.service';
 import { LoadingController, AlertController } from '@ionic/angular';
-import { FCM } from '@ionic-native/fcm/ngx';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  providers: [AuthService, AngularFireAuth, SumagroAppService, FCM]
+  providers: [AuthService, AngularFireAuth, SumagroAppService]
 })
 export class HomePage {
    
@@ -18,37 +18,11 @@ export class HomePage {
   password: string;
 
   // tslint:disable-next-line:max-line-length
-  constructor(public alertController: AlertController,public loadingController: LoadingController, private authService: AuthService, public router: Router, public sumagroAppService: SumagroAppService, public fcm: FCM) { 
+  constructor(public alertController: AlertController,public loadingController: LoadingController, private authService: AuthService, public router: Router, public sumagroAppService: SumagroAppService) { 
     
   }
 
-  obtenerTokenFCM() {
-    this.fcm.getToken().then(
-      (token: string) => {
-        console.log('Este es el token: ' + token);
-        this.mandarToken(token);
-      }
-    ).catch(error => {
-      console.log('Error');
-    });
-
-    this.fcm.onTokenRefresh().subscribe((token: string) => {
-      console.log('Este es el token Actualizado: ' + token);
-    });
-
-    this.fcm.onNotification().subscribe(data => {
-      if ( data.wasTapped) {
-    // Ocurre en segundo plano
-    console.log('Estamos en segundo plano ');
-      } else {
-        // Ocurre en primer plano
-        console.log('Estamos en primer plano ');
-      }
-    }, error => {
-    console.log('El error es: ' + error );
-    });
-
-  }
+  
 
 
   onSubmitTemplate() {
@@ -74,8 +48,8 @@ export class HomePage {
       let token = await this.authService.getToken();
       let userData:any = await this.sumagroAppService.getInfo(token,response['user']['uid']);
       console.log(userData)
-      if(userData.rol=="INGENIO_ADMIN"){
-      this.obtenerTokenFCM();
+      if(userData.rol=="INGENIO_ADMIN" ){
+
 
       this.router.navigate(['/menu']);
       }else{

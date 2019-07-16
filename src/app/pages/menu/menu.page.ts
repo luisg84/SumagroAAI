@@ -14,8 +14,6 @@ import {  SumagroAppService } from '../../servicios/sumagro-app.service';
   providers: [AuthService, AngularFireAuth, SumagroAppService]
 })
 export class MenuPage implements OnInit {
-  // tslint:disable-next-line:no-var-keyword
-  // tslint:disable-next-line:align
  
 
   constructor(public router: Router, private statusBar: StatusBar, public authService: AuthService) { }
@@ -24,13 +22,11 @@ export class MenuPage implements OnInit {
   
 
  async  ngOnInit() {
-    // let user = firebase.auth().currentUser;
-    // console.log("El usuario es: "+JSON.stringify(user.uid));
+   
     this.statusBar.backgroundColorByHexString('#23c28f');
     
   }
-  // 23c28f
-  // 178f69
+ 
 
   irPedido() {
     this.router.navigate(['/pedido']);
